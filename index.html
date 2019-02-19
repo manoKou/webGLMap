@@ -8,20 +8,35 @@
       window.onload = function(){
 
           var earth = new WE.map('earth_div');
-          WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+          var urlTemp = "http://tileserver.maptiler.com/grandcanyon/{z}/{x}/{y}.png";
+          var urlTemp2 = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+          var urlTemp3 = 'http://tileserver.maptiler.com/cassini-terrestrial/{z}/{x}/{y}.jpg';
+          var options = {
+            /*bounds: [[35.98245136, -112.26379395],[36.13343831, -112.10998535]],
+            minZoom: 10,
+            maxZoom: 16,*/
             attribution: '© OpenStreetMap contributors'
-          }).addTo(earth);
+          };
+          WE.tileLayer(urlTemp3, options ).addTo(earth);
 
           earth.setHeading(90);
 
         var northBtn = document.getElementById("northBtn");
+        var boundsBtn = document.getElementById("boundsBtn");
 
         function headNorth(){
           earth.setHeading(0);
           console.log("heading north!");
         }
 
+        function getLocation(){
+          var loc = earth.getBounds();
+          console.log(loc);
+          console.log(typeof(loc));
+        }
+
         northBtn.addEventListener("click", headNorth);
+        boundsBtn.addEventListener("click", getLocation);
 
       }
 
@@ -32,7 +47,7 @@
       html, body{padding: 0; margin: 0;}
       #earth_div{top: 0; right: 0; bottom: 0; left: 0; position: absolute !important;}
 
-      #northBtn{
+      .btn{
         position: fixed;
         top: 5px;
         left: 5px;
@@ -45,9 +60,13 @@
         border: 1px solid rgba(180,180,180);
       }
 
-      #northBtn:hover{
+      .btn:hover{
         cursor: pointer;
         transform: scale(1.1);
+      }
+
+      #boundsBtn{
+        top: 50px;
       }
 
     </style>
@@ -57,7 +76,7 @@
   <body>
     <div id="earth_div"></div>
     <!--<div id="northBtn" onclick="north()">Head North</div>-->
-    <div id="northBtn">Head North</div>
-    <div id="boundsBtn">Get Location</div>
+    <div class="btn" id="northBtn">Head North</div>
+    <div class="btn" id="boundsBtn">Get Location</div>
   </body>
 </html>
