@@ -111,12 +111,52 @@
         top: 100px;
       }
 
+      .cross-container{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        
+      }
+
+      .x-cross{
+        width: 100px;
+        height: 1px;
+        position: absolute;
+        background-color: black;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .y-cross{
+        width: 100px;
+        height: 1px;
+        position: absolute;
+        background-color: black;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+
     </style>
     <title>WebGL Earth API: Hello World</title>
   </head>
   <!--<body onload="initialize()">-->
   <body>
     <div id="earth_div"></div>
+
+    <div class="cross-container">
+      <div class="y-cross">
+
+      </div>
+      <div class="x-cross">
+
+      </div>
+    </div>
+
     <!--<div id="northBtn" onclick="north()">Head North</div>-->
     <div class="bomb-cont" id="bomb"></div>
     <div id="mushroom" class="mushroom"></div>
